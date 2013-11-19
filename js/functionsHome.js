@@ -46,6 +46,8 @@ function onDeviceReady() {
 					localStorage.removeItem('e');
 					$("#nombre, #cp, #telefono, #email").val('').prop('readonly', false);
 					$("#nombre").focus();
+				}else{
+					$("#objeto").focus();
 				}
 			}, nombreApp, txt_btn_si+','+txt_btn_no );
 		}
@@ -337,6 +339,7 @@ function onDeviceReady() {
 	/*device={name,cordova,platform,uuid,model,version}*/
 	//ios7
 	if ((device.platform == 'iOS') && (parseInt(device.version) >= 7)) {/*hay que dejarle 20px en el top de espaciado*/}
+	
 	user.device = {
 		'name':device.name,
 		'cordova':device.cordova,
@@ -345,7 +348,8 @@ function onDeviceReady() {
 		'model':device.model,
 		'version':device.version
 	};
-
+	
+/*
 	//evita el resize cuenado abre la ventana de texto
 	$("input[type=text], textarea, select").focus(function(){
 		$('head meta[name=viewport]').remove();
@@ -354,7 +358,7 @@ function onDeviceReady() {
 		$('head meta[name=viewport]').remove();
 		$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1;" />');
 	});
-	
+*/	
 	//permite el placeholder en los numeros
 	$("input[type='number']").each(function(i, el) {
 	    el.type = "text";
