@@ -3,7 +3,7 @@
     
     <name>2cLM</name>
     <description>Second Chance Luxury Market App</description>
-    <author href="http://e-short.com" email="pmartin@shortcut-emarketing.com">E-Short</author>
+    <author href="http://e-short.com" email="admin@shortcut-emarketing.com">eShort</author>
         
     <content src="index.html" />
     <!-- Enable individual API permissions here. -->
