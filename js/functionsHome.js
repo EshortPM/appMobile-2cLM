@@ -117,10 +117,6 @@ function onDeviceReady() {
 		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
-	
-	
-	
-	
 	$("#btnContinuar").swipe({
 		tap:function(event, target) {
         	clearError();
