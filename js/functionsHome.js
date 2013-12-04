@@ -12,6 +12,9 @@ function showAlert(text){navigator.notification.alert(text,null,nombreApp,txt_bt
 
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ DEVICE READY */
 function onDeviceReady() {
+	
+	pictureSource=navigator.camera.PictureSourceType;
+    destinationType=navigator.camera.DestinationType;
 
 	if (localStorage.getItem('n')){
 		var nomberLoc = localStorage.getItem('n');
@@ -27,14 +30,21 @@ function onDeviceReady() {
 
 	$(".input_, .textarea_, .select_").on('click keydown',function(){clearError();});
 	
+	$("#descripcion").keydown(function(e){
+		var code = e.keyCode || e.which;
+		if(code == 9) e.preventDefault();
+	});
+	
+	
 	$(".inputBackground").swipe({
 		tap:function(event, target) {
 			var id = $(this).attr('id');
 			var id_new= id.substr(3,(id.length - 3));
 			$("#"+id_new).focus();
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
-	
+
 	$('.input_').on("focus", function(){
 		if (localStorage.getItem('n')){
 			navigator.notification.confirm(txt_msj_borrarLoc, function(btn){
@@ -53,8 +63,31 @@ function onDeviceReady() {
 		}
 	});
 	
-	pictureSource=navigator.camera.PictureSourceType;
-    destinationType=navigator.camera.DestinationType;
+	$("#terminos_check").swipe({
+		tap:function(event, target) {
+			clearError();
+			if (user.terminos == 'No'){
+				$("#terminos_check img").attr('src','img/chek_on.png');
+				user.terminos = 'Si';
+			}else{
+				$("#terminos_check img").attr('src','img/chek_off.png');
+				user.terminos = 'No';	
+			}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
+	});
+	
+	$("#terminosLink").swipe({
+		tap:function(event, target) {
+			clearError();
+			muestraHelp(3);
+			$("#terminos_check img").attr('src','img/chek_on.png');
+			user.terminos = 'Si';
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
+	});
+	
+	
 	
 	$(".btnCapture").swipe({
 		tap:function(event, target) {
@@ -66,7 +99,8 @@ function onDeviceReady() {
 				numPhoto = parseInt(id.substr(-1,1));
 				capturePhoto();
 			}
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$(".btnFind").swipe({
@@ -79,31 +113,11 @@ function onDeviceReady() {
 				numPhoto = parseInt(id.substr(-1,1));
 				getPhoto(pictureSource.PHOTOLIBRARY);
 			}
-		}
-	});
-	
-	$("#terminos_check").swipe({
-		tap:function(event, target) {
-			clearError();
-			if (user.terminos == 'No'){
-				$("#terminos_check img").attr('src','img/chek_on.png');
-				user.terminos = 'Si';
-			}else{
-				$("#terminos_check img").attr('src','img/chek_off.png');
-				user.terminos = 'No';	
-			}
-		}
-	});
-	
-	$("#terminosLink").swipe({
-		tap:function(event, target) {
-			clearError();
-			muestraHelp(3);
-			$("#terminos_check img").attr('src','img/chek_on.png');
-			user.terminos = 'Si';
 		},
 		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
+	
+	
 	
 	
 	
@@ -186,6 +200,17 @@ function onDeviceReady() {
 				$("#email").val(user.email);
 				$("#descripcion").val(user.descripcion);
 				
+				
+				if (okDatos){
+					//miramos que no este en focus
+					var focusInput = $(".input_").is(':focus');
+					if (focusInput) {okDatos = false;$(".input_").blur();}
+					var focusTextArea = $(".textarea_").is(':focus');
+					if (focusTextArea) {okDatos = false; $(".textarea_").blur();}
+					var focusSelect = $(".select_").is(':focus');
+					if (focusSelect) {okDatos = false; $(".select_").blur();}
+				}
+				
 				//okDatos = true;
 				
 				if (okDatos){
@@ -201,16 +226,7 @@ function onDeviceReady() {
 				}
 			}
         },
-        doubleTap:function(event, target) {
-        	event.preventDefault();
-        },
-		longTap:function(event, target) {
-        	event.preventDefault();
-        },
-        swipe:function(event, direction, distance, duration, fingerCount) {
-        	event.preventDefault();
-        },
-        threshold:0
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$("#btnBack").swipe({
@@ -223,56 +239,50 @@ function onDeviceReady() {
 				// Animation complete.
 			});
 			
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$(".btnSettings").swipe({
 		tap:function(event, target) {
 			clearError();
-			$("#pageSettings").stop().animate({
+			$("#page-settings").stop().animate({
 				left: "0px"
 			}, 500, function() {
 				// Animation complete.
 			});
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$("#btnSettings_back").swipe({
 		tap:function(event, target) {
 			clearError();
-			$("#pageSettings").stop().animate({
+			$("#page-settings").stop().animate({
 				left: "100%"
 			}, 500, function() {
 				// Animation complete.
 			});
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$("#btnHelp_back").swipe({
 		tap:function(event, target) {
-			$("#pageHelp").stop().animate({
+			$("#page-help").stop().animate({
 				left: "100%"
 			}, 500, function() {
 				// Animation complete.
 			});
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$("#btnRecAmigo").swipe({
 		tap:function(event, target) {
-			/*
-			var href = $(this).attr('href');
-		    if (typeof href !== 'undefined' && href.substr(0, 7) === 'http://'){
-		        event.preventDefault();
-		        iabMail = window.open(this.href, '_blank','location=yes,enableViewPortScale=yes');
-		        iabMail.addEventListener('loadstart', iabLoadStart);
-       			iabMail.addEventListener('loadstop', iabLoadStop);
-        		iabMail.addEventListener('exit', iabMailClose);
-		    }
-		    */
-			//iabMail = window.open(this.href+"mailto:?subject="+mail_recAmigo_subject+"&body="+mail_recAmigo_body, '_self');
 			window.location.href = "mailto:?subject="+mail_recAmigo_subject+"&body="+mail_recAmigo_body;
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	
@@ -280,22 +290,26 @@ function onDeviceReady() {
 	$("#btnHelp").swipe({
 		tap:function(event, target) {
 			muestraHelp(1);
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	$("#btnAttCliente").swipe({
 		tap:function(event, target) {
 			muestraHelp(2);
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	$("#btnAvisoLegal").swipe({
 		tap:function(event, target) {
 			muestraHelp(3);
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	$("#btnAcerca").swipe({
 		tap:function(event, target) {
 			muestraHelp(4);
-		}
+		},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	$("#btnSend").swipe({
@@ -324,16 +338,7 @@ function onDeviceReady() {
 				navigator.notification.confirm(txt_error_data_noImage, envioDatosUser_noImg, nombreApp, txt_btn_aceptar+','+txt_btn_cancelar );
 			}
 		},
-        doubleTap:function(event, target) {
-        	event.preventDefault();
-        },
-		longTap:function(event, target) {
-        	event.preventDefault();
-        },
-        swipe:function(event, direction, distance, duration, fingerCount) {
-        	event.preventDefault();
-        },
-        threshold:0
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
 	
 	/*device={name,cordova,platform,uuid,model,version}*/
@@ -348,17 +353,7 @@ function onDeviceReady() {
 		'model':device.model,
 		'version':device.version
 	};
-	
-/*
-	//evita el resize cuenado abre la ventana de texto
-	$("input[type=text], textarea, select").focus(function(){
-		$('head meta[name=viewport]').remove();
-		$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0;" />');
-	}).blur(function(){
-		$('head meta[name=viewport]').remove();
-		$('head').prepend('<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1;" />');
-	});
-*/	
+		
 	//permite el placeholder en los numeros
 	$("input[type='number']").each(function(i, el) {
 	    el.type = "text";
@@ -372,21 +367,17 @@ function onDeviceReady() {
 			iabRef.addEventListener('loadstart', iabLoadStart);
        		iabRef.addEventListener('loadstop', iabLoadStop);
         	iabRef.addEventListener('exit', iabRefClose);
-       	}
+       	},
+		excludedElements:"button, input, select, textarea, .noSwipe"
 	});
-	
-	//new FastClick(document.body);
+
 }
 /*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ DEVICE READY */
 
 
-function iabLoadStart(event) {
-    //alert(event.type + ' - ' + event.url);
-}
+function iabLoadStart(event) {/*alert(event.type + ' - ' + event.url);*/}
 
-function iabLoadStop(event) {
-    //alert(event.type + ' - ' + event.url);
-}
+function iabLoadStop(event) {/*alert(event.type + ' - ' + event.url);*/}
 
 function iabRefClose(event) {
      //alert(event.type);
@@ -404,7 +395,7 @@ function iabMailClose(event) {
 
 function muestraHelp(num){
 	for (var i=1; i<5; i++){if (i == num) $("#helpContent_"+i).show(); else $("#helpContent_"+i).hide();}
-	$("#pageHelp").animate({
+	$("#page-help").animate({
 		left: "0px"
 	}, 500, function() {
 		// Animation complete.

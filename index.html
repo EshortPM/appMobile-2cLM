@@ -11,7 +11,8 @@
 	<link rel="stylesheet" type="text/css" media="all and (min-width:480px) and (orientation: portrait)" href="css/screen_adapt.css" />
 	<link rel="stylesheet" type="text/css" media="all and (min-width:800px) and (orientation: landscape)" href="css/screen_adapt.css" />
 	
-	<script type="text/javascript" src="phonegap.js"></script><!-- Al compilar se agregara el Javascript de PhoneGap adecuado a la plataforma -->	
+	<script type="text/javascript" src="phonegap.js"></script>
+	
 	<script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
 	<script type="text/javascript" src="js/jquery.touchSwipe.min.js"></script>
 	<script type="text/javascript" src="js/uaParser.min.js"></script>
@@ -22,99 +23,102 @@
 </head>
 <body>
 	
+<div id="fondo">
+	
 	<div class="cabecera">
 		<div id="banner"><img class="imageWidth" src="img/cabecera.jpg" /></div>
 	</div>
 	
 	<div class="cuerpo">
-		
-		<div class="page" id="page-center">
-			<div class="section">
-				<div class="tarjeta borderRadius5">
-					<div class="formLine">						
-						<div class="inputBackground input90 borderRadius5" id="bg_nombre">
-							<div class="inputBackground_img ico_nombre"></div>
-							<div class="inputBackground_text">
-								<input type="text" class='input_' id="nombre" placeholder="*Nombre y Apellidos">
-							</div>
-						</div>						
-					</div>
-					<div class="formLine">						
-						<div class="inputBackground input50 borderRadius5" id="bg_telefono">
-							<div class="inputBackground_img ico_telefono"></div>
-							<div class="inputBackground_text inputTel">
-								<input type="number" class='input_' id="telefono" placeholder="*Teléfono">
-							</div>
-						</div>						
-						<div class="inputBackground input39 borderRadius5" id="bg_cp">
-							<div class="inputBackground_img ico_cp"></div>
-							<div class="inputBackground_text inputCP">
-								<input type="number" class='input_' id="cp" placeholder="*C.P.">
-							</div>
-						</div>	
-					</div>
-					<div class="formLine formLine_fin">					
-						<div class="inputBackground input90 borderRadius5" id="bg_email">
-							<div class="inputBackground_img ico_email"></div>
-							<div class="inputBackground_text">
-								<input type="text" class='input_' id="email" placeholder="Email">
-							</div>
-						</div>						
+
+		<div class="section">
+			<div class="tarjeta borderRadius5">
+				<div class="formLine">
+					<div class="inputBackground input90 borderRadius5" id="bg_nombre">
+						<div class="inputBackground_img ico_nombre"></div>
+						<div class="inputBackground_text">
+							<input type="text" class='input_' id="nombre" placeholder="*Nombre y Apellidos">
+						</div>
 					</div>
 				</div>
-			</div>
-			<div class="section">
-				<div class="tarjeta borderRadius5">
-					<select class="select_ borderRadius5" id="objeto">
-				    	<option selected="selected" value="">*Objeto a tasar</option>
-				    	<option value="Bolso de marca">Bolso de marca</option>
-				    	<option value="Reloj">Reloj</option>
-				    	<option value="Complemento de marca">Complemento de marca</option>
-				    	<option value="Gafas">Gafas</option>
-				    	<option value="Antigüedad">Antigüedad</option>
-				    	<option value="Otros">Otros</option>
-				    </select>
-				    <textarea class="textarea_ borderRadius5" placeholder="Descripción/comentarios" id="descripcion" maxlength="240"></textarea>
-				    <div class="terminos_line">
-				    	<div id="terminos_check"><img src="img/chek_off.png"/></div>
-				    	<div id="terminos_txt">Acepto los <a id="terminosLink">términos</a>.</div>
-				    </div>
+				<div class="formLine">						
+					<div class="inputBackground input50 borderRadius5" id="bg_telefono">
+						<div class="inputBackground_img ico_telefono"></div>
+						<div class="inputBackground_text inputTel">
+							<input type="number" class='input_' id="telefono" placeholder="*Teléfono">
+						</div>
+					</div>						
+					<div class="inputBackground input39 borderRadius5" id="bg_cp">
+						<div class="inputBackground_img ico_cp"></div>
+						<div class="inputBackground_text inputCP">
+							<input type="number" class='input_' id="cp" placeholder="*C.P.">
+						</div>
+					</div>	
+				</div>
+				<div class="formLine formLine_fin">
+					<div class="inputBackground input90 borderRadius5" id="bg_email">
+						<div class="inputBackground_img ico_email"></div>
+						<div class="inputBackground_text">
+							<input type="text" class='input_' id="email" placeholder="Email">
+						</div>
+					</div>						
 				</div>
 			</div>
-			
-			
-			<div class="sectionPage bottomPage">
-				<div id="btnContinuar" class="borderRadius5">
-					<div class="text_button textEnviar">Continuar</div>
-				</div>
-				<div class="txterror"></div>
-				<div class="btnSettings"></div>
-			</div>
-	
 		</div>
+		<div class="section">
+			<div class="tarjeta borderRadius5">
+				<select class="select_ borderRadius5" id="objeto">
+			    	<option selected="selected" value="">*Objeto a tasar</option>
+			    	<option value="Bolso de marca">Bolso de marca</option>
+			    	<option value="Reloj">Reloj</option>
+			    	<option value="Complemento de marca">Complemento de marca</option>
+			    	<option value="Gafas">Gafas</option>
+			    	<option value="Antigüedad">Antigüedad</option>
+			    	<option value="Otros">Otros</option>
+			    </select>
+			    <textarea class="textarea_ borderRadius5" placeholder="Descripción/comentarios" id="descripcion" maxlength="240"></textarea>
+			    <div class="terminos_line">
+			    	<div id="terminos_check"><img src="img/chek_off.png"/></div>
+			    	<div id="terminos_txt">Acepto los <a id="terminosLink">términos</a>.</div>
+			    </div>
+			</div>
+		</div>
+		<div class="section section-unique">
+			<div id="btnContinuar" class="borderRadius5">
+				<div class="text_button textEnviar">Continuar</div>
+			</div>
+			<div class="txterror"></div>
+		</div>
+
+		<div class="section section-unique">
+			<div class="btnSettings"></div>
+		</div>
+
 		
 		<div class="page" id="page-right">
 			
 			<div class="sectionPage topPage">
 				<div id="btnBack">
-					<div class="flechaback"><svg style='width: 100%; height: 100%;'><line x1="100%" y1="0" x2="0" y2="50%" class="lineFlecha"/><line x1="0" y1="50%" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
-					<div class="flechaback"><svg style='width: 100%; height: 100%;'><line x1="100%" y1="0" x2="0" y2="50%" class="lineFlecha"/><line x1="0" y1="50%" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
+					<div class="flechaback"><svg class="svgStyle"><line x1="100%" y1="0" x2="0" y2="50%" class="lineFlecha"/><line x1="0" y1="50%" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
+					<div class="flechaback"><svg class="svgStyle"><line x1="100%" y1="0" x2="0" y2="50%" class="lineFlecha"/><line x1="0" y1="50%" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
 				</div>
 			</div>
 			
-			<div class="sectionPage centerPage">				
+			<div class="sectionPage centerPage">
 				<div class="imagen_content" id="imagen_content_1">
 					<div class="btnCapture borderRadius5" id="btnCapture_1">
-						<div class="flechaDerecha"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
-						<div class="flechaAbajo"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="50%" y2="100%" class="lineFlecha"/><line x1="50%" y1="100%" x2="100%" y2="0" class="lineFlecha"/></svg></div>
+						<div class="flechaDerecha"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaAbajo"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="50%" y2="100%" class="lineFlecha"/><line x1="50%" y1="100%" x2="100%" y2="0" class="lineFlecha"/></svg></div>
 						<div class="icon_button iconCamara"></div>
 						<div class="text_button textCamara">Cámara</div>
+						<span><input type="file" accept="image/*" id="capt1" capture="camera" onchange="onFileSelected(event, this.id)"></span>
 					</div>
 					<div class="btnFind borderRadius5" id="btnFind_1">
-						<div class="flechaDerecha"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
-						<div class="flechaArriba"><svg style='width: 100%; height: 100%;'><line x1="0" y1="100%" x2="50%" y2="0" class="lineFlecha"/><line x1="50%" y1="0" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaDerecha"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaArriba"><svg class="svgStyle"><line x1="0" y1="100%" x2="50%" y2="0" class="lineFlecha"/><line x1="50%" y1="0" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
 						<div class="icon_button iconAlbum"></div>
 						<div class="text_button textAlbum">Álbum</div>
+						<span><input type="file" accept="image/*" id="find1" onchange="onFileSelected(event, this.id)"></span>
 					</div>
 					<div class="imgVista borderRadius5" id="imgVista_1">
 						<div class="tamanoImg" id="tamanoImg1"></div>
@@ -122,16 +126,18 @@
 				</div>
 				<div class="imagen_content" id="imagen_content_2">
 					<div class="btnCapture borderRadius5" id="btnCapture_2">
-						<div class="flechaDerecha"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
-						<div class="flechaAbajo"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="50%" y2="100%" class="lineFlecha"/><line x1="50%" y1="100%" x2="100%" y2="0" class="lineFlecha"/></svg></div>
+						<div class="flechaDerecha"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaAbajo"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="50%" y2="100%" class="lineFlecha"/><line x1="50%" y1="100%" x2="100%" y2="0" class="lineFlecha"/></svg></div>
 						<div class="icon_button iconCamara"></div>
 						<div class="text_button textCamara">Cámara</div>
+						<span><input type="file" accept="image/*" id="capt2" capture="camera" onchange="onFileSelected(event, this.id)"></span>
 					</div>
 					<div class="btnFind borderRadius5" id="btnFind_2">
-						<div class="flechaDerecha"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
-						<div class="flechaArriba"><svg style='width: 100%; height: 100%;'><line x1="0" y1="100%" x2="50%" y2="0" class="lineFlecha"/><line x1="50%" y1="0" x2="100%" y2="100%" class="lineFlecha"/></svg></div>					
+						<div class="flechaDerecha"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaArriba"><svg class="svgStyle"><line x1="0" y1="100%" x2="50%" y2="0" class="lineFlecha"/><line x1="50%" y1="0" x2="100%" y2="100%" class="lineFlecha"/></svg></div>					
 						<div class="icon_button iconAlbum"></div>
 						<div class="text_button textAlbum">Álbum</div>
+						<span><input type="file" accept="image/*" id="find2" onchange="onFileSelected(event, this.id)"></span>
 					</div>
 					<div class="imgVista borderRadius5" id="imgVista_2">
 						<div class="tamanoImg" id="tamanoImg2"></div>
@@ -139,16 +145,18 @@
 				</div>
 				<div class="imagen_content" id="imagen_content_3">
 					<div class="btnCapture borderRadius5" id="btnCapture_3">
-						<div class="flechaDerecha"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
-						<div class="flechaAbajo"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="50%" y2="100%" class="lineFlecha"/><line x1="50%" y1="100%" x2="100%" y2="0" class="lineFlecha"/></svg></div>
+						<div class="flechaDerecha"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaAbajo"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="50%" y2="100%" class="lineFlecha"/><line x1="50%" y1="100%" x2="100%" y2="0" class="lineFlecha"/></svg></div>
 						<div class="icon_button iconCamara"></div>
 						<div class="text_button textCamara">Cámara</div>
+						<span><input type="file" accept="image/*" id="capt3" capture="camera" onchange="onFileSelected(event, this.id)" ></span>
 					</div>
 					<div class="btnFind borderRadius5" id="btnFind_3">
-						<div class="flechaDerecha"><svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
-						<div class="flechaArriba"><svg style='width: 100%; height: 100%;'><line x1="0" y1="100%" x2="50%" y2="0" class="lineFlecha"/><line x1="50%" y1="0" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaDerecha"><svg class="svgStyle svgButton"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg></div>
+						<div class="flechaArriba"><svg class="svgStyle"><line x1="0" y1="100%" x2="50%" y2="0" class="lineFlecha"/><line x1="50%" y1="0" x2="100%" y2="100%" class="lineFlecha"/></svg></div>
 						<div class="icon_button iconAlbum"></div>
 						<div class="text_button textAlbum">Álbum</div>
+						<span><input type="file" accept="image/*" id="find3" onchange="onFileSelected(event, this.id)"></span>
 					</div>
 					<div class="imgVista borderRadius5" id="imgVista_3">
 						<div class="tamanoImg" id="tamanoImg3"></div>
@@ -164,28 +172,27 @@
 					<div class="text_button textEnviar">Enviar</div>
 				</div>
 			</div>
-
+			
 		</div>
-		
-		
-		<div class="page" id="pageSettings">
+
+		<div class="page" id="page-settings">
 			<div class="secSettings borderRadius5" id="secSettings_1">
 				<div class="btnSettings_option option_ini" id="btnRecAmigo">
 					<div class="btnSettings_option_text">Recomendar a un amigo</div>
 					<div class="btnSettings_option_flecha">
-						<svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
+						<svg class="svgStyle"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
 					</div>
 				</div>
 				<div class="btnSettings_option" id="btnHelp">
 					<div class="btnSettings_option_text">Ayuda</div>
 					<div class="btnSettings_option_flecha">
-						<svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
+						<svg class="svgStyle"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
 					</div>
 				</div>
 				<div class="btnSettings_option" id="btnAttCliente">
 					<div class="btnSettings_option_text">Atención al Cliente</div>
 					<div class="btnSettings_option_flecha">
-						<svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
+						<svg class="svgStyle"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
 					</div>
 				</div>
 			</div>
@@ -193,13 +200,13 @@
 				<div class="btnSettings_option option_ini" id="btnAvisoLegal">
 					<div class="btnSettings_option_text">Aviso Legal</div>
 					<div class="btnSettings_option_flecha">
-						<svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
+						<svg class="svgStyle"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
 					</div>
 				</div>
 				<div class="btnSettings_option" id="btnAcerca">
 					<div class="btnSettings_option_text">Acerca de...</div>
 					<div class="btnSettings_option_flecha">
-						<svg style='width: 100%; height: 100%;'><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
+						<svg class="svgStyle"><line x1="0" y1="0" x2="100%" y2="50%" class="lineFlecha"/><line x1="100%" y1="50%" x2="0" y2="100%" class="lineFlecha"/></svg>
 					</div>
 				</div>
 			</div>
@@ -214,7 +221,7 @@
 			<div id="btnSettings_back" class="ios-6-arrow left grey" data-title="Volver"></div>
 		</div>
 		
-		<div class="page" id="pageHelp">
+		<div class="page" id="page-help">
 			<div class="secHelp borderRadius5" id="helpContent_1">
 				<div class="secHelp_int">
 					<div class="secHelp_int_title">Ayuda</div>
@@ -275,10 +282,12 @@
 			</div>
 			
 			<div id="btnHelp_back" class="ios-6-arrow left grey" data-title="Volver"></div>
+
 		</div>
-		
-		
+
 	</div>
+
+</div>
 	
 	<div id="fancy">
 		<div id="fancyBackground"></div>
